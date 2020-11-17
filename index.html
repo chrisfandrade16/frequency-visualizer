@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Frequency Visualizer</title>
+        <meta charset="utf-8"></meta>
+        <link rel="icon" href="favicon.ico"></link>
+        <link rel="stylesheet" href="./styles/total.css"></link>
+        <link rel="stylesheet" href="./styles/navigator.css"></link>
+        <link rel="stylesheet" href="./styles/home.css"></link>
+        <link rel="stylesheet" href="./styles/studio.css"></link>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rowdies:wght@300&display=swap"></link>
+    </head>
+
+    <body>
+        <div class="total-container">
+            <div class="navigator">
+                <div class="navigator-left"></div>
+
+                <div class="navigator-middle">
+                    <a href="#home" class="navigator-link">Home</a>
+                    <a href="#studio" class="navigator-link">Studio</a>
+                </div>
+
+                <div class="navigator-right">
+                    <a href="https://github.com/christopherandrade716/toneily">
+                        <img src="./images/github.png"></img>
+                    </a>
+                </div>
+            </div>
+
+            <div class="home" id="home">
+                <div class="home-left">
+                    <div class="home-heading">
+                        <h1>Frequency Visualizer</h1>
+                    </div>
+
+                    <div class="home-paragraph">
+                        <p>Visualize input from your microphone.</p>
+                    </div>
+                </div>
+
+                <div class="home-right">
+
+                </div>
+            </div>
+
+            <div class="studio">
+                <div class="studio-notes">
+                    <div class="studio-notes-letters">
+                        <div class="C"><h1>C</h1></div>
+                        <div class="D"><h1>D</h1></div>
+                        <div class="E"><h1>E</h1></div>
+                        <div class="F"><h1>F</h1></div>
+                        <div class="G"><h1>G</h1></div>
+                        <div class="A"><h1>A</h1></div>
+                        <div class="B"><h1>B</h1></div>
+                    </div>
+
+                    <div class="studio-notes-non-letters">
+                        <div class="studio-notes-non-letters-octaves">
+                            <div class="0"><h5>0</h5></div>
+                            <div class="1"><h5>1</h5></div>
+                            <div class="2"><h5>2</h5></div>
+                            <div class="3"><h5>3</h5></div>
+                            <div class="4"><h5>4</h5></div>
+                            <div class="5"><h5>5</h5></div>
+                            <div class="6"><h5>6</h5></div>
+                            <div class="7"><h5>7</h5></div>
+                            <div class="8"><h5>8</h5></div>
+                        </div>
+
+                        <div class="studio-notes-non-letters-symbols">
+                            <div class="sharp"><h5>#</h5></div>
+                            <div class="flat"><h5>b</h5></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="studio-microphone" id="microphone">
+                    <img src = "./images/microphone.png" id="microphone-symbol"></img>
+                    <img src = "./images/diagonal.png" id="microphone-diagonal"></img>
+                </div>
+
+                <canvas id="visualizer"></canvas>
+            </div>
+        </div>
+    </body>
+
+    <script src="./scripts/fundamental.js"></script>
+    <script src="./scripts/gif.js"></script>
+    <script src="./scripts/jquery.js"></script>
+    <script src="./scripts/logo.js"></script>
+    <script src="./scripts/microphone.js"></script>
+    <script src="./scripts/navigator.js"></script>
+    <script src="./scripts/visualizer.js"></script>
+</html>

@@ -1,0 +1,134 @@
+.studio
+{
+    display: grid;
+    width: 1903px;
+    height: 940px;
+}
+
+.studio-notes
+{
+    display: flex;
+    position: relative;
+    left: 852px;
+    top: 75px;
+    width: 200px;
+    height: 250px;
+    opacity: 50%;
+    z-index: 1;
+}
+
+.studio-notes-letters
+{
+    position: relative;
+    width: 150px;
+    height: 250px;
+}
+
+.studio-notes-letters div
+{
+    color: white;
+    position: absolute;
+    font-size: 100px;
+    width: 125px;
+    height: 250px;
+    opacity: 0%;
+}
+
+.studio-notes-letters div h1
+{
+    position: absolute;
+    margin: 0px;
+    width: 125px;
+    height: 250px;
+}
+
+.studio-notes-non-letters
+{
+    position: relative;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    height: 150px;
+}
+
+.studio-notes-non-letters-octaves
+{
+    position: relative;
+    width: 50px;
+    height: 50px;
+}
+
+.studio-notes-non-letters-octaves div
+{
+    color: white;
+    position: absolute;
+    font-size: 40px;
+    width: 50px;
+    height: 50px;
+    opacity: 0%;
+}
+
+.studio-notes-non-letters-octaves div h5
+{
+    position: absolute;
+    margin: 0px;
+    width: 50px;
+    height: 50px;
+    
+}
+
+.studio-notes-non-letters-symbols
+{
+    position: relative;
+    top: 50px;
+    width: 50px;
+    height: 50px;
+}
+
+.studio-notes-non-letters-symbols div
+{
+    color: white;
+    position: absolute;
+    font-size: 40px;
+    width: 50px;
+    height: 50px;
+    opacity: 0%;
+}
+
+.studio-notes-non-letters-symbols div h5
+{
+    position: absolute;
+    margin: 0px;
+    width: 50px;
+    height: 50px;
+}
+
+.studio-microphone
+{
+    position: relative;
+    margin: 0px;
+    top: 100px;
+    left: 901px;
+    width: 100px;
+    height: 100px;
+}
+
+.studio-microphone img
+{
+    position: absolute;
+    width: 100px;
+    height: 100px;
+}
+
+#microphone-diagonal
+{
+    transition: opacity 0.5s;
+}
+
+#visualizer
+{
+    position: absolute;
+    left: 50px;
+    right: 50px;
+    width: 1803px;
+    height: 600px;
+}
