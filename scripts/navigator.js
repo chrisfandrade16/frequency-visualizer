@@ -6,15 +6,11 @@ function navigator_handler()
     {
         navigator_links[0].style.setProperty("color", "lightslategray", "important");
         navigator_links[1].style.setProperty("color", "lightgray", "");
-        navigator_links[2].style.setProperty("color", "lightgray", "");
-        navigator_links[3].style.setProperty("color", "lightgray", "");
     }
     else if(location.hash === "#studio")
     {
         navigator_links[0].style.setProperty("color", "lightgray", "");
         navigator_links[1].style.setProperty("color", "lightslategray", "important");
-        navigator_links[2].style.setProperty("color", "lightgray", "");
-        navigator_links[3].style.setProperty("color", "lightgray", "");
     }
 }
 
