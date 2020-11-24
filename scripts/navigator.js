@@ -2,7 +2,7 @@ let navigator_links = document.querySelectorAll(".navigator-link");
 
 function navigator_handler()
 {
-    if(location.hash === "#")
+    if(location.hash === "#home")
     {
         navigator_links[0].style.setProperty("color", "lightslategray", "important");
         navigator_links[1].style.setProperty("color", "lightgray", "");
