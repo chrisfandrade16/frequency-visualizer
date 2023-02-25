@@ -1,0 +1,31 @@
+.home
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 125px;
+}
+
+.home-left
+{
+    margin-top: 225px;
+    margin-bottom: 225px;
+}
+
+.home-heading
+{
+    color: white;
+    font-size: 35px;
+    margin-right: 550px;
+}
+
+.home-paragraph   
+{
+    color: white;
+    font-size: 17px;
+    margin-right: 225px;  
+}
+
+.home-right
+{
+    position: relative;
+}
