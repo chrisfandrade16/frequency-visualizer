@@ -1,6 +1,6 @@
 module.exports = {
 	prefix: "tw-",
-	content: [],
+	content: ["./src/**/*.{js,jsx,ts,tsx}"],
 	plugins: [],
 	theme: {
 		extend: {},

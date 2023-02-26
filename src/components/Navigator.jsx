@@ -1,35 +1,50 @@
-import { GITHUB_LOGO_LINK, GITHUB_REPO_LINK } from "constants/links";
+import { GITHUB_REPO_LINK } from "constants/links";
 import { HOME_TAB_TEXT } from "constants/texts";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
+import gifFrameInitial from "images/logo_frames/logo00.png";
+import {
+	NAVIGATOR_BOX_CLASS,
+	NAVIGATOR_CLASS,
+	NAVIGATOR_ICON_CLASS,
+	NAVIGATOR_TAB_CLASS,
+} from "constants/classes";
+import GITHUB_ICON from "images/github.png";
 
 const Navigator = () => {
-	const [gifFrames, setGifFrames] = useState([]);
+	const [gifFrames, setGifFrames] = useState([gifFrameInitial]);
 	const [gifFrameIndex, setGifFrameIndex] = useState(0);
 	const [gifFrameInterval, setGifFrameInterval] = useState(null);
-	const [selectedTab, setSelecedTab] = useState(0);
+	const [selectedTab, setSelecedTab] = useState(null);
 
-	const gifFrameSpeed = 15;
-
-	console.log(gifFrames);
+	const gifFrameSpeed = 25;
 
 	useEffect(() => {
-		setGifFrames(require.context("images/logo_frames", false, /\.(png)$/));
+		const imagesContext = require.context(
+			"images/logo_frames",
+			false,
+			/\.(png|jpe?g|svg)$/
+		);
+		const images = imagesContext.keys().map((imageKey) => {
+			return imagesContext(imageKey);
+		});
+		setGifFrames(images);
 	}, []);
 
 	return (
-		<div className="navigator">
-			<div className="navigator-box">
+		<div className={NAVIGATOR_CLASS}>
+			<div className={`${NAVIGATOR_BOX_CLASS} tw-mr-auto tw-justify-start`}>
 				<img
-					className="navigator-icon"
+					className={NAVIGATOR_ICON_CLASS}
 					onMouseEnter={() => {
+						let currentIntervalGifFrameIndex = gifFrameIndex;
 						setGifFrameInterval(
 							setInterval(() => {
-								if (gifFrameIndex < gifFrames.length - 1) {
-									const newGifFrameIndex = gifFrameIndex + 1;
-									setGifFrameIndex(newGifFrameIndex);
+								if (currentIntervalGifFrameIndex < gifFrames.length - 1) {
+									currentIntervalGifFrameIndex += 1;
+									setGifFrameIndex(currentIntervalGifFrameIndex);
 								} else {
-									const newGifFrameIndex = 0;
-									setGifFrameIndex(newGifFrameIndex);
+									currentIntervalGifFrameIndex = 0;
+									setGifFrameIndex(currentIntervalGifFrameIndex);
 								}
 							}, gifFrameSpeed)
 						);
@@ -41,9 +56,9 @@ const Navigator = () => {
 				></img>
 			</div>
 
-			<div className="navigator-box">
+			<div className={`${NAVIGATOR_BOX_CLASS} tw-justify-center`}>
 				<a
-					className={`navigator-tab ${selectedTab === 0 ? "selected" : ""}`}
+					className={NAVIGATOR_TAB_CLASS(selectedTab === 0)}
 					href="#home"
 					onClick={() => {
 						setSelecedTab(0);
@@ -52,9 +67,13 @@ const Navigator = () => {
 					{HOME_TAB_TEXT}
 				</a>
 			</div>
-			<div className="navigator-box">
-				<a className="navigator-icon" href={GITHUB_REPO_LINK}>
-					<img src={GITHUB_LOGO_LINK}></img>
+			<div className={`${NAVIGATOR_BOX_CLASS} tw-ml-auto tw-justify-end`}>
+				<a
+					className={NAVIGATOR_ICON_CLASS}
+					href={GITHUB_REPO_LINK}
+					target="_blank"
+				>
+					<img className={NAVIGATOR_ICON_CLASS} src={GITHUB_ICON}></img>
 				</a>
 			</div>
 		</div>

@@ -9,5 +9,6 @@ body {
 	margin: 0px;
 }
 
-@import "styles/navigator.scss";
-@import "styles/home.scss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

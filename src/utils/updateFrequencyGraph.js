@@ -1,4 +1,4 @@
-import findFundamentalFrequency from "./findFundamentalFrequency";
+import findFundamentalFrequency from "utils/findFundamentalFrequency";
 import { ALL_NOTES } from "constants/arrays";
 
 const updateFrequencyGraph = (
@@ -10,22 +10,41 @@ const updateFrequencyGraph = (
 	setVisisbleNoteOctave,
 	setVisibleNoteAccidental
 ) => {
+	console.log(`Sampling rate: ${samplingRate}`);
+	console.log(`Fast fourier transform size: ${fastFourierTransformSize}`);
+
 	const maximumMicrophoneFrequency = samplingRate / 2;
+
+	console.log(`Maximum microphone frequency: ${maximumMicrophoneFrequency}`);
+
 	const numberOfDecibelValuesPerFrequencyResolution =
 		fastFourierTransformSize / 2;
+
+	console.log(
+		`Number of decibel values per frequency resolution: ${numberOfDecibelValuesPerFrequencyResolution}`
+	);
+
 	const frequencyResolution =
 		maximumMicrophoneFrequency / numberOfDecibelValuesPerFrequencyResolution;
 
-	// each element is the decibel loudness for index * rangeOfFrequencyPerBin frequency
+	console.log(`Frequency resolution: ${frequencyResolution}`);
+
+	// each element is the decibel loudness for each frequency resolution
 	const decibelValuesPerFrequencyResolution = new Uint8Array(
 		numberOfDecibelValuesPerFrequencyResolution
 	);
 	analyzerNode.getByteFrequencyData(decibelValuesPerFrequencyResolution);
 
 	const maximumDeiredFrequency = 7902; // B8
-	const numberOfFrequencyValues = maximumDeiredFrequency / frequencyResolution;
+	const numberOfFrequencyValues = Math.round(
+		maximumDeiredFrequency / frequencyResolution
+	);
+
+	console.log(`Number of frequency values: ${numberOfFrequencyValues}`);
 
 	let barWidthInGraph = canvasRef.width / numberOfFrequencyValues;
+
+	console.log(`Bar width in graph: ${barWidthInGraph}`);
 
 	const canvasContext = canvasRef.getContext("2d");
 	const redRGB = "rgb(227,22,61)";
@@ -50,16 +69,21 @@ const updateFrequencyGraph = (
 		);
 	}
 
-	const frequenciesMap = new Array(numberOfFrequencyValues);
+	const frequencyRangeToDecibelValueMap = new Array(numberOfFrequencyValues);
 
 	for (let index = 0; index < numberOfFrequencyValues; index++) {
-		frequenciesMap[index] = [
-			index * frequencyResolution, // discrete frequency
-			decibelValuesPerFrequencyResolution[index], // loudness of that frequency
+		const lowerBoundFrequencyRange = index * frequencyResolution;
+		const upperBoundFrequencyRange =
+			lowerBoundFrequencyRange + frequencyResolution;
+		frequencyRangeToDecibelValueMap[index] = [
+			[lowerBoundFrequencyRange, upperBoundFrequencyRange], // discrete frequency
+			decibelValuesPerFrequencyResolution[index], // loudness detected in that range
 		];
 	}
 
-	const fundamentalFrequency = findFundamentalFrequency(frequenciesMap);
+	const fundamentalFrequency = findFundamentalFrequency(
+		frequencyRangeToDecibelValueMap
+	);
 	const numberOfSemitonesPerOctave = 12;
 	const A4Frequency = 440;
 	const A4Index = 57;
